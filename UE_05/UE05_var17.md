@@ -1,10 +1,15 @@
+# Abgabe Übung 05
+> **Arvo Klöck | 909003**  
+> **10.11.2024**
+    
+```python
 import numpy as np
 from math import sqrt, atan2, pi
 
 
 # Gegebene Werte für die Passpunkte
 passpunkte = [
-   ("A", 15.22, 19.03, 3494082.82, 5795440.63),  # (Name, y, x, r, h)
+   ("A", 15,22, 19.03, 3494082.82, 5795440.63),  # (Name, y, x, r, h)
    ("B", 37.18, 39.05, 3494059.39, 5795422.35),  # (Name, y=Rechtswert(N), x=Hochwert(E), r=Rechtswert(N), h=Hochwert(E))
 ]
 neupunkt = ("P", 20,00, 26,53)  # (Name, y=Rechtswert(N), x=Hochwert(E)) des zu transformierenden Punktes
@@ -91,26 +96,40 @@ hP_gk = hS + hP_trans
 # Ausgabe in Gauß-Krüger-Koordinaten
 print(f"Transformierte Koordinaten von Punkt P in Gauß-Krüger: rP_gk={rP_gk:+15.3f} m, hP_gk={hP_gk:+15.3f} m")
 print()
+```
+# Gegeben: 2 Passpunkte im yx-/Quell- und hr-/Zielsystem
 
+$
+\begin{array}{ll}
+\#01: & \left[ A \quad (y=+15.220 \, \text{m}, \, x=+19.030 \, \text{m}), \, (r=+3494082.820 \, \text{m}, \, h=+5795440.630 \, \text{m}) \right] \\
+\#02: & \left[ B \quad (y=+37.180 \, \text{m}, \, x=+39.050 \, \text{m}), \, (r=+3494059.390 \, \text{m}, \, h=+5795422.350 \, \text{m}) \right]
+\end{array}
+$
 
-# # Berechnung der Restklaffungen
-# v = A @ np.array([[r0], [h0], [a], [o]]) - b
-# print("-- Restklaffungen (in mm)")
-# for i, passpunkt in enumerate(passpunkte):
-#     name = passpunkt[0]  # Nur den Namen extrahieren
-#     kr, kh = -v[2 * i, 0] * 1000, -v[2 * i + 1, 0] * 1000
-#     print(f"#{i+1:02d}: {name:10} kr={kr:+6.1f} mm, kh={kh:+6.1f} mm")
-#
-# # Redundanzanteile (optional, wenn benötigt)
-# R = np.diag(A @ Q @ A.T)  # Redundanzmatrix Diagonale
-# print("\nRedundanzanteile:")
-# for i, r in enumerate(R):
-#     print(f"{i+1:02d}: {r:.4f}")
-# print()
-# # Erzeugung der Diagonalmatrix mit denselben Einträgen
-# R_matrix = np.diag(R)
-#
-# # Ausgabe der Diagonalmatrix
-# print("Redundanzmatrix als Diagonalmatrix:")
-# print(R_matrix)
-
+## Schwerpunktkoordinaten
+$y_S = +26.200 \, \text{m}, \quad x_S = +29.040 \, \text{m}; \quad r_S = +3494071.105 \, \text{m}, \quad h_S = +5795431.490 \, \text{m}$
+## Messungen, Unbekannte und Freiheitsgrade
+$n = 4 \, \text{Messungen}, \quad u = 4 \, \text{Unbekannte}, \quad f = 0 \, \text{Freiheitsgrade}$
+## Fehlergleichungen
+$\begin{bmatrix}
+1 & 0 & -10.98 & 10.01 & 11.715 \\
+0 & 1 & -10.01 & -10.98 & 9.14 \\
+1 & 0 & 10.98 & -10.01 & -11.715 \\
+0 & 1 & 10.01 & 10.98 & -9.14
+\end{bmatrix}$
+## Normalgleichungen
+$\begin{bmatrix}
+2.00000000 \times 10^0 & 0.00000000 \times 10^0 & 1.77635684 \times 10^{-15} & 0.00000000 \times 10^0 & 0.00000000 \times 10^0 \\
+0.00000000 \times 10^0 & 2.00000000 \times 10^0 & 0.00000000 \times 10^0 & 1.77635684 \times 10^{-15} & -9.31322575 \times 10^{-10} \\
+1.77635684 \times 10^{-15} & 0.00000000 \times 10^0 & 4.41521000 \times 10^2 & 6.68336497 \times 10^{-15} & -4.40244200 \times 10^2 \\
+0.00000000 \times 10^0 & 1.77635684 \times 10^{-15} & 6.68336497 \times 10^{-15} & 4.41521000 \times 10^2 & 3.38199000 \times 10^1
+\end{bmatrix}$
+## Lösung des Gleichungssystems
+$r_0 = +0.000 \, \text{m}, \quad h_0 = -0.000 \, \text{m}, \quad a = -0.997108, \quad o = +0.076599$
+## Maßstab und Drehwinkel
+$q = 1.0000460, \quad (q-1) = 46.0 \, \text{ppm} \, (\text{part per million}), \, [\text{mm/km}]$
+$\phi = +175.607 \, \text{deg}$
+## Transformierte Koordinaten von Punkt P
+$r_P' = +8.406 \, \text{m}, \quad h_P' = +28.481 \, \text{m}$
+## Transformierte Koordinaten von Punkt P in Gauß-Krüger
+$r_{P_{gk}} = +3494079.511 \, \text{m}, \quad h_{P_{gk}} = +5795459.971 \, \text{m}$
