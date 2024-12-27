@@ -1,0 +1,14 @@
+# Lineare Regression Bevölkerung und Arbeitslosigkeit, Residuen Darstellen räumlich
+# Fehler in der Arbeitslosigkeit
+# Bei LM (Lineare Model) Abhängige Vatiable (Tilde) und Unabhängige Variable. Als Model abspeichern. Wenn man die die Residuen mit $residuals kann man diese direkt rausholen.
+
+# bei lm immer die abhängige Variable zuerst
+
+# Formeln aufschreiben bei den abgaben.
+
+# Legend outside -> True
+
+# Standardfehler der Coeffizienten:
+
+
+data$variable (Datensatz und Spalte)
