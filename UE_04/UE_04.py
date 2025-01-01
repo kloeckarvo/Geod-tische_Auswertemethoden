@@ -20,7 +20,7 @@ c = 0.003 #Standardabweichung der Gewichtseinheit
 grosse = np.shape(mess)
 N = grosse[0]
 A = np.zeros ([N, 2])
-P = np.zeros ([N, N])
+P = np.zeros ([N, N])H
 B = np.zeros ([N, 1])
 i = 0
 while i < N:
