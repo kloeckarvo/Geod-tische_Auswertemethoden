@@ -1,3 +1,9 @@
+# Aufgabe 16
+>Bearbeitet von:  
+> Arvo Klöck  | 909003
+
+## Code
+```python
 import numpy as np
 import pandas as pd
 from scipy.optimize import least_squares
@@ -209,3 +215,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+```
+
+
+## Output
+
+![img.png](img.png)
+![img_1.png](img_1.png)
